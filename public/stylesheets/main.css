@@ -1,0 +1,25 @@
+#delete-form {
+	display: inline;
+}
+
+
+footer{
+   bottom:0;
+   left:0;
+   width:100%;
+
+}
+
+body{
+	margin-bottom: 100px;
+}
+
+
+.alert {
+  animation: cssAnimation 0s 2s forwards;
+  visibility: visible;
+}
+
+@keyframes cssAnimation {
+  to   { visibility: hidden; }
+}

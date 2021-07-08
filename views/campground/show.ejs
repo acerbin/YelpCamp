@@ -1,0 +1,87 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<p class="lead">
+				YelpCamp
+			</p>
+			<div class="list-group">
+				<li class="list-group-item">Info 1</li>
+				<li class="list-group-item disabled">Info 2</li>
+				<li class="list-group-item disabled">Info 3</li>
+
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="card">
+				<img class="card-img-top" src="<%= campground.image %>" alt="<%= campground.name %> image">
+				<div class="card-body py-2">
+		
+					<h4 class="card-title">
+						<a class="text-left"><%= campground.name %></a>
+						<span class="float-right">£9/night</span>
+					</h4>
+					<p class="card-text">
+						<%= campground.description %>
+					</p>
+					<p class="card-text">
+						<em>Submitted By <%= campground.author.username %></em>
+					</p>
+					<% if(currentUser && campground.author.id.equals(currentUser._id)) {%>
+						<a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-dark mb-2">Edit</a>
+						<form style="display: inline" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" id="delete-form">
+							<button class="btn btn-dark mb-2">
+								Delete
+							</button>
+						</form>
+					<% } %>
+
+					<div class="jumbotron px-3 py-2">
+						
+						
+						<p class="mb-4 mt-1 d-flex justify-content-end">
+							<a class="btn btn-dark" href="/campgrounds/<%= campground._id %>/comments/new">Add Comment</a>
+						</p>
+						
+						<% campground.comments.forEach((comment) => { %>
+
+							<div class="row justify-content-between  m-2">
+								<div class="col-md-6">
+									<strong><%= comment.author.username %></strong>
+								</div>
+								<div class="col-md-6 text-right">
+									<span class="justify-content-end">10 days ago</span>
+								</div>
+								<div class="col-md-12">
+									<%= comment.text %>
+
+								</div>
+
+							</div>
+						<% }) %>	
+							
+
+
+					</div>
+										
+
+				</div>
+				
+
+
+					
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- <img src="<%= campground.image %>">
+ -->
+
+
+
+
+<%- include("../partials/footer") %>
